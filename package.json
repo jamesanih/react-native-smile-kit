@@ -57,21 +57,39 @@
     "registry": "https://registry.npmjs.org/"
   },
   "jest": {
-    "preset": "react-native",
+    "testEnvironment": "node",
     "testMatch": [
-      "**/__tests__/**/*.test.ts",
-      "**/__tests__/**/*.test.tsx"
+      "**/src/__tests__/**/*.test.ts",
+      "**/src/__tests__/**/*.test.tsx"
     ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(react-native|@react-native|rn-wrap)/)"
+    "transform": {
+      "^.+\\.tsx?$": [
+        "babel-jest",
+        {
+          "presets": [
+            "@babel/preset-env",
+            "@babel/preset-typescript"
+          ]
+        }
+      ]
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.29.7",
+    "@babel/preset-typescript": "^7.29.7",
     "@eslint/compat": "^2.0.3",
     "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "^10.0.1",
     "@react-native/babel-preset": "0.85.0",
     "@react-native/eslint-config": "0.85.0",
+    "@types/babel__preset-env": "^7",
     "@types/jest": "^30.0.0",
     "@types/react": "^19.2.0",
     "babel-jest": "^30.4.1",

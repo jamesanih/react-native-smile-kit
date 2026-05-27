@@ -20,8 +20,8 @@ import {
   SmileID,
   SmileIDPortal,
   useSmileID,
-} from 'rn-wrap';
-import type { SmileError, SmileResult } from 'rn-wrap';
+} from 'react-native-smile-kit';
+import type { SmileError, SmileResult } from 'react-native-smile-kit';
 
 // ─── Credentials Screen ──────────────────────────────────────────────────────
 

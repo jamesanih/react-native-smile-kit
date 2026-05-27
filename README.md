@@ -1,4 +1,4 @@
-# rn-wrap
+# react-native-smile-kit
 
 React Native SDK wrapping the [Smile Identity](https://usesmileid.com) native SDKs for iOS and Android.
 
@@ -13,9 +13,9 @@ Built on React Native New Architecture (Fabric + TurboModules). Supports Biometr
 ## Installation
 
 ```sh
-npm install rn-wrap
+npm install react-native-smile-kit
 # or
-yarn add rn-wrap
+yarn add react-native-smile-kit
 ```
 
 ### iOS
@@ -33,7 +33,7 @@ No extra steps — the package links automatically via autolinking.
 Mount `<SmileIDPortal />` **once** at your app root (required for the imperative API):
 
 ```tsx
-import { SmileIDPortal } from 'rn-wrap';
+import { SmileIDPortal } from 'react-native-smile-kit';
 
 export default function App() {
   return (
@@ -50,7 +50,7 @@ export default function App() {
 Call `SmileID.initialize()` before launching any flow. This is typically done on a credentials screen or inside an authentication gate.
 
 ```tsx
-import { SmileID } from 'rn-wrap';
+import { SmileID } from 'react-native-smile-kit';
 
 await SmileID.initialize({
   partnerId: 'YOUR_PARTNER_ID',
@@ -72,8 +72,8 @@ await SmileID.initialize({
 Use the `useSmileID` hook or call `SmileID.launch()` directly.
 
 ```tsx
-import { useSmileID } from 'rn-wrap';
-import type { SmileResult, SmileError } from 'rn-wrap';
+import { useSmileID } from 'react-native-smile-kit';
+import type { SmileResult, SmileError } from 'react-native-smile-kit';
 
 function MyScreen() {
   const { launch, dismiss, isReady } = useSmileID();
@@ -119,7 +119,7 @@ Call `dismiss()` to programmatically close an active flow.
 Embed flows directly as components. Each component fills its parent's layout.
 
 ```tsx
-import { BiometricKycView, DocumentVerificationView } from 'rn-wrap';
+import { BiometricKycView, DocumentVerificationView } from 'react-native-smile-kit';
 
 <BiometricKycView
   countryCode="NG"
@@ -158,7 +158,7 @@ type SmileError = {
 `BiometricKycResult.livenessImages` arrives as a JSON-serialized string from Android. Use the provided helper to decode it:
 
 ```ts
-import { parseLivenessImages } from 'rn-wrap';
+import { parseLivenessImages } from 'react-native-smile-kit';
 
 const paths: string[] = parseLivenessImages(result.livenessImages);
 ```

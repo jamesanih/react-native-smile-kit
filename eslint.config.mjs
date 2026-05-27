@@ -35,19 +35,19 @@ export default defineConfig([
           patterns: [
             {
               group: ['**/BiometricKycViewNativeComponent'],
-              message: "Import BiometricKycView from 'rn-wrap' instead.",
+              message: "Import BiometricKycView from 'react-native-smile-kit' instead.",
             },
             {
               group: ['**/SmartSelfieEnrollmentViewNativeComponent'],
-              message: "Import SmartSelfieEnrollmentView from 'rn-wrap' instead.",
+              message: "Import SmartSelfieEnrollmentView from 'react-native-smile-kit' instead.",
             },
             {
               group: ['**/SmartSelfieAuthenticationViewNativeComponent'],
-              message: "Import SmartSelfieAuthenticationView from 'rn-wrap' instead.",
+              message: "Import SmartSelfieAuthenticationView from 'react-native-smile-kit' instead.",
             },
             {
               group: ['**/DocumentVerificationViewNativeComponent'],
-              message: "Import DocumentVerificationView from 'rn-wrap' instead.",
+              message: "Import DocumentVerificationView from 'react-native-smile-kit' instead.",
             },
           ],
         },

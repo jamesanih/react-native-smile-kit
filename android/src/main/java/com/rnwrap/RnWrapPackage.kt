@@ -11,6 +11,7 @@ class RnWrapViewPackage : BaseReactPackage() {
   override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> =
     listOf(
       RnWrapViewManager(),
+      BiometricKycViewManager(),
       DocumentVerificationViewManager(),
       SmartSelfieAuthenticationViewManager(),
       SmartSelfieEnrollmentViewManager(),

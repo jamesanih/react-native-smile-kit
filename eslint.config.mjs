@@ -23,6 +23,37 @@ export default defineConfig([
       'prettier/prettier': 'error',
     },
   },
+  // Restrict native component imports in consumer code only.
+  // src/ internals (SmileIDPortal, wrappers) are legitimately allowed to
+  // import native components — the rule must not apply to them.
+  {
+    files: ['example/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['**/BiometricKycViewNativeComponent'],
+              message: "Import BiometricKycView from 'rn-wrap' instead.",
+            },
+            {
+              group: ['**/SmartSelfieEnrollmentViewNativeComponent'],
+              message: "Import SmartSelfieEnrollmentView from 'rn-wrap' instead.",
+            },
+            {
+              group: ['**/SmartSelfieAuthenticationViewNativeComponent'],
+              message: "Import SmartSelfieAuthenticationView from 'rn-wrap' instead.",
+            },
+            {
+              group: ['**/DocumentVerificationViewNativeComponent'],
+              message: "Import DocumentVerificationView from 'rn-wrap' instead.",
+            },
+          ],
+        },
+      ],
+    },
+  },
   {
     ignores: ['node_modules/', 'lib/'],
   },

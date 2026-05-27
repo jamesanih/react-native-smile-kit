@@ -8,6 +8,7 @@ import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.UiThreadUtil
 import com.facebook.react.module.annotations.ReactModule
 import com.smileidentity.SmileID
+import com.smileidentity.models.Config
 
 @ReactModule(name = SmileIDModule.NAME)
 class SmileIDModule(reactContext: ReactApplicationContext) :
@@ -25,7 +26,30 @@ class SmileIDModule(reactContext: ReactApplicationContext) :
   ) {
     UiThreadUtil.runOnUiThread {
       try {
-        SmileID.initialize(reactApplicationContext, useSandbox = useSandbox)
+        if (config != null &&
+          config.hasKey("partner_id") &&
+          !config.getString("partner_id").isNullOrEmpty()
+        ) {
+          val smileConfig = Config(
+            partnerId = config.getString("partner_id") ?: "",
+            authToken = config.getString("auth_token") ?: "",
+            prodLambdaUrl = if (config.hasKey("prod_lambda_url")) config.getString("prod_lambda_url") else null,
+            testLambdaUrl = if (config.hasKey("test_lambda_url")) config.getString("test_lambda_url") else null,
+          )
+          SmileID.initialize(
+            reactApplicationContext,
+            config = smileConfig,
+            useSandbox = useSandbox,
+            enableCrashReporting = enableCrashReporting,
+          )
+        } else {
+          // Fall back to smile_config.json in assets
+          SmileID.initialize(
+            reactApplicationContext,
+            useSandbox = useSandbox,
+            enableCrashReporting = enableCrashReporting,
+          )
+        }
         promise.resolve(null)
       } catch (e: Exception) {
         promise.reject("SmileID_INIT_ERROR", e.message, e)

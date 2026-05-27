@@ -101,6 +101,7 @@
       ]
     ]
   },
+  "react-native": "./src/index.tsx",
   "codegenConfig": {
     "name": "RnWrapViewSpec",
     "type": "all",
@@ -109,10 +110,12 @@
       "javaPackageName": "com.rnwrap"
     },
     "ios": {
-      "components": {
-        "RnWrapView": {
-          "className": "RnWrapView"
-        }
+      "componentProvider": {
+        "RnWrapView": "RnWrapView",
+        "DocumentVerificationView": "DocumentVerificationView",
+        "SmartSelfieAuthenticationView": "SmartSelfieAuthenticationView",
+        "SmartSelfieEnrollmentView": "SmartSelfieEnrollmentView",
+        "BiometricKycView": "BiometricKycView"
       }
     }
   },

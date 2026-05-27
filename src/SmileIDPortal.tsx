@@ -79,13 +79,19 @@ export function SmileIDPortal() {
   }
 
   return (
-    <Modal visible animationType="slide" onRequestClose={() => SmileID.dismiss()}>
+    <Modal
+      visible
+      animationType="slide"
+      onRequestClose={() => SmileID.dismiss()}
+    >
       <View style={styles.fill}>
         {flow === 'biometric_kyc' && (
           <NativeBiometricKycView
             style={styles.fill}
             {...(options as BiometricKycOptions)}
-            onSuccess={(e) => handleSuccess(e.nativeEvent as Record<string, unknown>)}
+            onSuccess={(e) =>
+              handleSuccess(e.nativeEvent as Record<string, unknown>)
+            }
             onError={(e) => handleError(e.nativeEvent as RawNativeError)}
           />
         )}
@@ -93,7 +99,9 @@ export function SmileIDPortal() {
           <NativeSmartSelfieEnrollmentView
             style={styles.fill}
             {...(options as SmartSelfieEnrollmentOptions)}
-            onSuccess={(e) => handleSuccess(e.nativeEvent as Record<string, unknown>)}
+            onSuccess={(e) =>
+              handleSuccess(e.nativeEvent as Record<string, unknown>)
+            }
             onError={(e) => handleError(e.nativeEvent as RawNativeError)}
           />
         )}
@@ -101,7 +109,9 @@ export function SmileIDPortal() {
           <NativeSmartSelfieAuthenticationView
             style={styles.fill}
             {...(options as SmartSelfieAuthenticationOptions)}
-            onSuccess={(e) => handleSuccess(e.nativeEvent as Record<string, unknown>)}
+            onSuccess={(e) =>
+              handleSuccess(e.nativeEvent as Record<string, unknown>)
+            }
             onError={(e) => handleError(e.nativeEvent as RawNativeError)}
           />
         )}
@@ -109,7 +119,9 @@ export function SmileIDPortal() {
           <NativeDocumentVerificationView
             style={styles.fill}
             {...(options as DocumentVerificationOptions)}
-            onSuccess={(e) => handleSuccess(e.nativeEvent as Record<string, unknown>)}
+            onSuccess={(e) =>
+              handleSuccess(e.nativeEvent as Record<string, unknown>)
+            }
             onError={(e) => handleError(e.nativeEvent as RawNativeError)}
           />
         )}

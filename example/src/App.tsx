@@ -33,7 +33,10 @@ function CredentialsScreen({ onReady }: { onReady: () => void }) {
 
   async function handleInit() {
     if (!partnerId.trim() || !authToken.trim()) {
-      Alert.alert('Missing credentials', 'Both Partner ID and Auth Token are required.');
+      Alert.alert(
+        'Missing credentials',
+        'Both Partner ID and Auth Token are required.'
+      );
       return;
     }
     setLoading(true);
@@ -82,7 +85,13 @@ function CredentialsScreen({ onReady }: { onReady: () => void }) {
 
 // ─── Result display ───────────────────────────────────────────────────────────
 
-function ResultBox({ result, error }: { result?: SmileResult; error?: SmileError }) {
+function ResultBox({
+  result,
+  error,
+}: {
+  result?: SmileResult;
+  error?: SmileError;
+}) {
   if (!result && !error) return null;
   return (
     <View style={error ? styles.errorBox : styles.successBox}>
@@ -130,15 +139,21 @@ function ImperativeTab() {
             },
             { onSuccess: handleSuccess, onError: handleError }
           )
-        }>
+        }
+      >
         <Text style={styles.buttonText}>Biometric KYC</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() =>
-          launch('smart_selfie_enrollment', {}, { onSuccess: handleSuccess, onError: handleError })
-        }>
+          launch(
+            'smart_selfie_enrollment',
+            {},
+            { onSuccess: handleSuccess, onError: handleError }
+          )
+        }
+      >
         <Text style={styles.buttonText}>SmartSelfie Enrollment</Text>
       </TouchableOpacity>
 
@@ -150,7 +165,8 @@ function ImperativeTab() {
             { userId: 'test-user-id' },
             { onSuccess: handleSuccess, onError: handleError }
           )
-        }>
+        }
+      >
         <Text style={styles.buttonText}>SmartSelfie Authentication</Text>
       </TouchableOpacity>
 
@@ -162,7 +178,8 @@ function ImperativeTab() {
             { countryCode: 'NG', documentType: 'NATIONAL_ID' },
             { onSuccess: handleSuccess, onError: handleError }
           )
-        }>
+        }
+      >
         <Text style={styles.buttonText}>Document Verification</Text>
       </TouchableOpacity>
 
@@ -256,8 +273,11 @@ function TabBar({
         <TouchableOpacity
           key={tab}
           style={[styles.tabItem, active === tab && styles.tabItemActive]}
-          onPress={() => onChange(tab)}>
-          <Text style={[styles.tabText, active === tab && styles.tabTextActive]}>
+          onPress={() => onChange(tab)}
+        >
+          <Text
+            style={[styles.tabText, active === tab && styles.tabTextActive]}
+          >
             {tab === 'imperative' ? 'Imperative' : 'Declarative'}
           </Text>
         </TouchableOpacity>
@@ -270,7 +290,9 @@ function TabBar({
 
 export default function App() {
   const [ready, setReady] = useState(false);
-  const [activeTab, setActiveTab] = useState<'imperative' | 'declarative'>('imperative');
+  const [activeTab, setActiveTab] = useState<'imperative' | 'declarative'>(
+    'imperative'
+  );
 
   if (!ready) return <CredentialsScreen onReady={() => setReady(true)} />;
 
@@ -321,8 +343,23 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   buttonText: { color: '#fff', fontWeight: '600', fontSize: 15 },
-  flowBox: { height: 400, borderRadius: 8, overflow: 'hidden', marginBottom: 16 },
-  successBox: { backgroundColor: '#e6f4ea', padding: 12, borderRadius: 8, marginTop: 16 },
-  errorBox: { backgroundColor: '#fce8e6', padding: 12, borderRadius: 8, marginTop: 16 },
+  flowBox: {
+    height: 400,
+    borderRadius: 8,
+    overflow: 'hidden',
+    marginBottom: 16,
+  },
+  successBox: {
+    backgroundColor: '#e6f4ea',
+    padding: 12,
+    borderRadius: 8,
+    marginTop: 16,
+  },
+  errorBox: {
+    backgroundColor: '#fce8e6',
+    padding: 12,
+    borderRadius: 8,
+    marginTop: 16,
+  },
   resultText: { fontSize: 12, fontFamily: 'monospace' },
 });

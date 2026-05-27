@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
 import { SmileID } from './SmileID';
-import type { FlowOptions, InitState, SmileError, SmileFlow, SmileResult } from './types';
+import type {
+  FlowOptions,
+  InitState,
+  SmileError,
+  SmileFlow,
+  SmileResult,
+} from './types';
 
 export function useSmileID() {
   const [initState, setInitState] = useState<InitState>(SmileID.getInitState());

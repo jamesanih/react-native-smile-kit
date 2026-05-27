@@ -92,7 +92,9 @@ describe('SmileID.initialize', () => {
         },
       }));
       const { SmileID } = require('../SmileID');
-      await expect(SmileID.initialize({ partnerId: 'pid', authToken: 'tok' })).rejects.toThrow();
+      await expect(
+        SmileID.initialize({ partnerId: 'pid', authToken: 'tok' })
+      ).rejects.toThrow();
       expect(SmileID.getInitState()).toBe('error');
     });
   });
@@ -113,7 +115,13 @@ describe('SmileID.launch', () => {
       expect(() =>
         SmileID.launch(
           'biometric_kyc',
-          { countryCode: 'NG', idType: 'NIN', idNumber: '123', firstName: 'Ada', lastName: 'Obi' },
+          {
+            countryCode: 'NG',
+            idType: 'NIN',
+            idNumber: '123',
+            firstName: 'Ada',
+            lastName: 'Obi',
+          },
           { onSuccess: jest.fn(), onError: jest.fn() }
         )
       ).toThrow('SmileID not initialized');
@@ -135,7 +143,13 @@ describe('SmileID.launch', () => {
       expect(() =>
         SmileID.launch(
           'biometric_kyc',
-          { countryCode: '', idType: 'NIN', idNumber: '123', firstName: 'Ada', lastName: 'Obi' },
+          {
+            countryCode: '',
+            idType: 'NIN',
+            idNumber: '123',
+            firstName: 'Ada',
+            lastName: 'Obi',
+          },
           { onSuccess: jest.fn(), onError: jest.fn() }
         )
       ).toThrow('biometric_kyc requires countryCode');

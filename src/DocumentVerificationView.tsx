@@ -24,7 +24,8 @@ export function DocumentVerificationView({
       {...rest}
       onSuccess={
         onSuccess
-          ? (e: { nativeEvent: DocumentVerificationResult }) => onSuccess(e.nativeEvent)
+          ? (e: { nativeEvent: DocumentVerificationResult }) =>
+              onSuccess(e.nativeEvent)
           : undefined
       }
       onError={

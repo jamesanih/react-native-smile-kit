@@ -5,7 +5,5 @@ type Props = ViewProps & {
 };
 
 export function RnWrapView(_props: Props): never {
-  throw new Error(
-    "'rn-wrap' is only supported on native platforms."
-  );
+  throw new Error("'rn-wrap' is only supported on native platforms.");
 }

@@ -1,6 +1,10 @@
 import type { ViewStyle } from 'react-native';
 import NativeBiometricKycView from './BiometricKycViewNativeComponent';
-import type { BiometricKycOptions, BiometricKycResult, SmileError } from './types';
+import type {
+  BiometricKycOptions,
+  BiometricKycResult,
+  SmileError,
+} from './types';
 
 type RawNativeError = { code: string; message: string };
 
@@ -10,7 +14,11 @@ export interface BiometricKycViewProps extends BiometricKycOptions {
   onError?: (error: SmileError) => void;
 }
 
-export function BiometricKycView({ onSuccess, onError, ...rest }: BiometricKycViewProps) {
+export function BiometricKycView({
+  onSuccess,
+  onError,
+  ...rest
+}: BiometricKycViewProps) {
   return (
     <NativeBiometricKycView
       {...rest}

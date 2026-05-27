@@ -16,4 +16,6 @@ export interface NativeProps extends ViewProps {
   onError?: DirectEventHandler<SmartSelfieErrorEvent>;
 }
 
-export default codegenNativeComponent<NativeProps>('SmartSelfieAuthenticationView');
+export default codegenNativeComponent<NativeProps>(
+  'SmartSelfieAuthenticationView'
+);

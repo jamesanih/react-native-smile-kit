@@ -1,5 +1,10 @@
 import { codegenNativeComponent, type ViewProps } from 'react-native';
-import type { DirectEventHandler, Float, Int32, WithDefault } from './CodegenTypes';
+import type {
+  DirectEventHandler,
+  Float,
+  Int32,
+  WithDefault,
+} from './CodegenTypes';
 
 type AutoCapture = 'AutoCapture' | 'ManualCaptureOnly';
 

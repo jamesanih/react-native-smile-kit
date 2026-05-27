@@ -24,13 +24,17 @@ export function SmartSelfieAuthenticationView({
       {...rest}
       onSuccess={
         onSuccess
-          ? (e: { nativeEvent: SmartSelfieAuthenticationResult }) => onSuccess(e.nativeEvent)
+          ? (e: { nativeEvent: SmartSelfieAuthenticationResult }) =>
+              onSuccess(e.nativeEvent)
           : undefined
       }
       onError={
         onError
           ? (e: { nativeEvent: RawNativeError }) =>
-              onError({ ...e.nativeEvent, flowType: 'smart_selfie_authentication' })
+              onError({
+                ...e.nativeEvent,
+                flowType: 'smart_selfie_authentication',
+              })
           : undefined
       }
     />

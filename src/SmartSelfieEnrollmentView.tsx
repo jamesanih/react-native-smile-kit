@@ -24,7 +24,8 @@ export function SmartSelfieEnrollmentView({
       {...rest}
       onSuccess={
         onSuccess
-          ? (e: { nativeEvent: SmartSelfieEnrollmentResult }) => onSuccess(e.nativeEvent)
+          ? (e: { nativeEvent: SmartSelfieEnrollmentResult }) =>
+              onSuccess(e.nativeEvent)
           : undefined
       }
       onError={

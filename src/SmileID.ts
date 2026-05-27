@@ -46,7 +46,9 @@ function validateOptions(flow: SmileFlow, options: FlowOptions) {
   if (flow === 'biometric_kyc') {
     const o = options as BiometricKycOptions;
     if (!o.countryCode || !o.idType || !o.idNumber) {
-      throw new Error('biometric_kyc requires countryCode, idType, and idNumber');
+      throw new Error(
+        'biometric_kyc requires countryCode, idType, and idNumber'
+      );
     }
     if (!o.firstName || !o.lastName) {
       throw new Error('biometric_kyc requires firstName and lastName');
@@ -61,7 +63,9 @@ function validateOptions(flow: SmileFlow, options: FlowOptions) {
   if (flow === 'document_verification') {
     const o = options as { countryCode?: string; documentType?: string };
     if (!o.countryCode || !o.documentType) {
-      throw new Error('document_verification requires countryCode and documentType');
+      throw new Error(
+        'document_verification requires countryCode and documentType'
+      );
     }
   }
 }

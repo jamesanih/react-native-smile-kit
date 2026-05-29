@@ -45,14 +45,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uchennaanih16/rn-wrap.git"
+    "url": "git+https://github.com/jamesanih/react-native-smile-kit.git"
   },
   "author": "Uchenna <uchennaanih16@gmail.com> (https://github.com/uchennaanih16)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/uchennaanih16/rn-wrap/issues"
+    "url": "https://github.com/jamesanih/react-native-smile-kit/issues"
   },
-  "homepage": "https://github.com/uchennaanih16/rn-wrap#readme",
+  "homepage": "https://github.com/jamesanih/react-native-smile-kit#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"

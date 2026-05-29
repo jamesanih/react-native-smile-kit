@@ -1,6 +1,6 @@
 {
   "name": "react-native-smile-kit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "SmileID React Native wrapper",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",

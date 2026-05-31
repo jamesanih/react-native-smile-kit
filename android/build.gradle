@@ -30,7 +30,6 @@ buildscript {
 
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
-apply plugin: "org.jetbrains.kotlin.plugin.compose"
 apply plugin: "org.jetbrains.kotlin.plugin.serialization"
 
 apply plugin: "com.facebook.react"
@@ -38,7 +37,7 @@ apply plugin: "com.facebook.react"
 android {
   namespace "com.rnwrap"
 
-  compileSdkVersion getExtOrDefault("compileSdkVersion")
+  compileSdk getExtOrDefault("compileSdkVersion") as int
 
   defaultConfig {
     minSdkVersion getExtOrDefault("minSdkVersion")
@@ -48,6 +47,13 @@ android {
   buildFeatures {
     buildConfig true
     compose true
+  }
+
+  composeOptions {
+    // Compatible with Kotlin 1.9.x and 2.0.x consumers.
+    // Kotlin 2.0+ uses the bundled compiler; this version is a no-op for K2
+    // but still required for Kotlin 1.9.x projects.
+    kotlinCompilerExtensionVersion = "1.5.14"
   }
 
   buildTypes {

@@ -24,12 +24,14 @@ buildscript {
     // noinspection DifferentKotlinGradleVersion
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${getExtOrDefault('kotlinVersion')}"
     classpath "org.jetbrains.kotlin:kotlin-serialization:${getExtOrDefault('kotlinVersion')}"
+    classpath "org.jetbrains.kotlin:compose-compiler-gradle-plugin:${getExtOrDefault('kotlinVersion')}"
   }
 }
 
 
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
+apply plugin: "org.jetbrains.kotlin.plugin.compose"
 apply plugin: "org.jetbrains.kotlin.plugin.serialization"
 
 apply plugin: "com.facebook.react"
@@ -47,13 +49,6 @@ android {
   buildFeatures {
     buildConfig true
     compose true
-  }
-
-  composeOptions {
-    // Compatible with Kotlin 1.9.x and 2.0.x consumers.
-    // Kotlin 2.0+ uses the bundled compiler; this version is a no-op for K2
-    // but still required for Kotlin 1.9.x projects.
-    kotlinCompilerExtensionVersion = "1.5.14"
   }
 
   buildTypes {

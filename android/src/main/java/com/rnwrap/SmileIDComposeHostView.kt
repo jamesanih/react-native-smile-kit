@@ -9,7 +9,9 @@ import androidx.compose.ui.platform.AbstractComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.setViewTreeLifecycleOwner
 import androidx.lifecycle.setViewTreeViewModelStoreOwner
+import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import com.facebook.react.bridge.ReactContext
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.uimanager.UIManagerHelper
@@ -23,16 +25,23 @@ abstract class SmileIDComposeHostView @JvmOverloads constructor(
 
   init {
     setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnDetachedFromWindow)
-    setupViewModelStoreOwner()
+    setupViewTreeOwners()
   }
 
-  private fun setupViewModelStoreOwner() {
-    val activity = context as? ComponentActivity
+  private fun setupViewTreeOwners() {
+    // In React Native, context is ThemedReactContext — unwrap to the real activity.
+    val activity = (context as? ReactContext)?.currentActivity as? ComponentActivity
+      ?: context as? ComponentActivity
+
     if (activity != null) {
       setViewTreeViewModelStoreOwner(activity)
+      setViewTreeLifecycleOwner(activity)
+      setViewTreeSavedStateRegistryOwner(activity)
     } else {
       customViewModelStore = ViewModelStore()
-      setViewTreeViewModelStoreOwner(ViewModelStoreOwner { customViewModelStore!! })
+      setViewTreeViewModelStoreOwner(object : ViewModelStoreOwner {
+        override val viewModelStore: ViewModelStore get() = customViewModelStore!!
+      })
     }
   }
 

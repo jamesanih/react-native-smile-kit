@@ -111,7 +111,8 @@ export const SmileID = {
           auth_token: config.authToken,
           prod_lambda_url: config.prodLambdaUrl,
           test_lambda_url: config.testLambdaUrl,
-        }
+        },
+        null
       );
       if (config.callbackUrl) {
         await NativeModule.setCallbackUrl(config.callbackUrl);

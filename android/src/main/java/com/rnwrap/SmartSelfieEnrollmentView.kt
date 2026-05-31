@@ -6,9 +6,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.smileidentity.SmileID
+import com.smileidentity.compose.SmartSelfieEnrollment
+import com.smileidentity.results.SmartSelfieResult
 import com.smileidentity.results.SmileIDResult
 import com.smileidentity.util.randomJobId
 import com.smileidentity.util.randomUserId
+import kotlinx.collections.immutable.toImmutableMap
 
 class SmartSelfieEnrollmentView(context: Context) :
   SmileIDComposeHostView(context = context, shouldUseAndroidLayout = true) {
@@ -30,8 +33,8 @@ class SmartSelfieEnrollmentView(context: Context) :
       allowNewEnroll = allowNewEnroll ?: false,
       showAttribution = showAttribution ?: true,
       showInstructions = showInstructions ?: true,
-      extraPartnerParams = extraPartnerParams,
-      onResult = { result ->
+      extraPartnerParams = extraPartnerParams.toImmutableMap(),
+      onResult = { result: SmileIDResult<SmartSelfieResult> ->
         when (result) {
           is SmileIDResult.Success ->
             dispatchDirectEvent("onSuccess", result.data.toWritableMap())

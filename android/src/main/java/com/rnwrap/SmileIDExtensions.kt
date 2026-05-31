@@ -28,7 +28,7 @@ fun BiometricKycResult.toWritableMap(): WritableMap =
     val arr = JSONArray()
     livenessFiles.forEach { arr.put(it.absolutePath) }
     putString("livenessImages", arr.toString())
-    putBoolean("didSubmitBiometricJob", didSubmitBiometricJob)
+    putBoolean("didSubmitBiometricJob", didSubmitBiometricKycJob)
   }
 
 fun Throwable.toErrorPayload(): WritableMap =

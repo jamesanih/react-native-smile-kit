@@ -9,6 +9,7 @@ import com.facebook.react.bridge.UiThreadUtil
 import com.facebook.react.module.annotations.ReactModule
 import com.smileidentity.SmileID
 import com.smileidentity.models.Config
+import java.net.URL
 
 @ReactModule(name = SmileIDModule.NAME)
 class SmileIDModule(reactContext: ReactApplicationContext) :
@@ -33,8 +34,8 @@ class SmileIDModule(reactContext: ReactApplicationContext) :
           val smileConfig = Config(
             partnerId = config.getString("partner_id") ?: "",
             authToken = config.getString("auth_token") ?: "",
-            prodLambdaUrl = if (config.hasKey("prod_lambda_url")) config.getString("prod_lambda_url") else null,
-            testLambdaUrl = if (config.hasKey("test_lambda_url")) config.getString("test_lambda_url") else null,
+            prodLambdaUrl = config.getString("prod_lambda_url") ?: "",
+            testLambdaUrl = config.getString("test_lambda_url") ?: "",
           )
           SmileID.initialize(
             reactApplicationContext,
@@ -62,7 +63,7 @@ class SmileIDModule(reactContext: ReactApplicationContext) :
     UiThreadUtil.runOnUiThread {
       try {
         if (!url.isNullOrEmpty()) {
-          SmileID.setCallbackUrl(url)
+          SmileID.setCallbackUrl(URL(url))
         }
         promise.resolve(null)
       } catch (e: Exception) {

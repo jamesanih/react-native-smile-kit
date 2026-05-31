@@ -6,9 +6,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.smileidentity.SmileID
+import com.smileidentity.compose.BiometricKYC
+import com.smileidentity.models.IdInfo
+import com.smileidentity.results.BiometricKycResult
 import com.smileidentity.results.SmileIDResult
 import com.smileidentity.util.randomJobId
 import com.smileidentity.util.randomUserId
+import kotlinx.collections.immutable.toImmutableMap
 
 class BiometricKycView(context: Context) :
   SmileIDComposeHostView(context = context, shouldUseAndroidLayout = true) {
@@ -29,21 +33,25 @@ class BiometricKycView(context: Context) :
 
   @Composable
   override fun Content() {
-    SmileID.BiometricKyc(
-      countryCode = countryCode,
-      idType = idType,
-      idNumber = idNumber,
-      firstName = firstName,
-      lastName = lastName,
+    SmileID.BiometricKYC(
+      idInfo = IdInfo(
+        country = countryCode,
+        idType = idType,
+        idNumber = idNumber,
+        firstName = firstName,
+        lastName = lastName,
+        entered = true,
+      ),
       userId = userId ?: randomUserId(),
       jobId = jobId ?: randomJobId(),
       allowAgentMode = allowAgentMode ?: false,
       allowNewEnroll = allowNewEnroll ?: false,
       showInstructions = showInstructions ?: true,
       showAttribution = showAttribution ?: true,
+      extraPartnerParams = extraPartnerParams.toImmutableMap(),
       useStrictMode = useStrictMode ?: false,
-      extraPartnerParams = extraPartnerParams,
-      onResult = { result ->
+      consentInformation = null,
+      onResult = { result: SmileIDResult<BiometricKycResult> ->
         when (result) {
           is SmileIDResult.Success ->
             dispatchDirectEvent("onSuccess", result.data.toWritableMap())

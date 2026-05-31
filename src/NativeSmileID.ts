@@ -12,7 +12,8 @@ export interface Spec extends TurboModule {
   initialize(
     useSandbox: boolean,
     enableCrashReporting: boolean,
-    config?: Object
+    config?: Object,
+    apiKey?: string | null
   ): Promise<void>;
   setCallbackUrl(url?: string): Promise<void>;
 }

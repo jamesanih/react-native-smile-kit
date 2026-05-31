@@ -6,12 +6,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.smileidentity.SmileID
-import com.smileidentity.compose.document.DocumentVerificationScreen
+import com.smileidentity.compose.DocumentVerification
 import com.smileidentity.models.AutoCapture
+import com.smileidentity.results.DocumentVerificationResult
 import com.smileidentity.results.SmileIDResult
 import com.smileidentity.util.randomJobId
 import com.smileidentity.util.randomUserId
 import kotlin.time.Duration.Companion.seconds
+import kotlinx.collections.immutable.toImmutableMap
 
 class DocumentVerificationView(context: Context) :
   SmileIDComposeHostView(context = context, shouldUseAndroidLayout = true) {
@@ -54,8 +56,8 @@ class DocumentVerificationView(context: Context) :
       showInstructions = showInstructions ?: true,
       showAttribution = showAttribution ?: true,
       useStrictMode = useStrictMode ?: false,
-      extraPartnerParams = extraPartnerParams,
-      onResult = { result ->
+      extraPartnerParams = extraPartnerParams.toImmutableMap(),
+      onResult = { result: SmileIDResult<DocumentVerificationResult> ->
         when (result) {
           is SmileIDResult.Success ->
             dispatchDirectEvent("onSuccess", result.data.toWritableMap())
